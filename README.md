@@ -22,7 +22,7 @@ export LOGLEVEL=info
 
 To obtain the result, you can refer to the following script:
 ```
-./check-image; if [ `echo $?` = "0" ]; then touch SUCCESS; fi
+./check-image; if [ `echo $?` = '0' ]; then touch SUCCESS; fi
 ```
 If the file `SUCCESS` is created, then the check has passed.
 
