@@ -20,7 +20,13 @@ export LOGLEVEL=info
 - `CHECKED_IMAGES`: comma-separated list of images to be checked
 - `LOGLEVEL`: log level, can be `debug`, `info`, `warn`, or `error` (default is `info`)
 
-Or run the docker image directly:
+To obtain the result, you can refer to the following script:
+```
+./check-image; if [ `echo $?` = "0" ]; then touch SUCCESS; fi
+```
+If the file `SUCCESS` is created, then the check has passed.
+
+You can also run the docker image directly:
 ```bash
 docker run \
 -e REGISTRY_URL=https://harbor.mycompany.com \
