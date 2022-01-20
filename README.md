@@ -26,6 +26,6 @@ docker run \
 -e REGISTRY_URL=https://harbor.mycompany.com \
 -e REGISTRY_USERNAME=harboruser \
 -e REGISTRY_PASSWORD=harborpass \
--e CHECKED_IMAGES=myrepo/mysvc1:v1,myrepo/mysvc2:v1,myrepo/mysvc3:v1  \
-minghsu0107/check-docker-image
+-e CHECKED_IMAGES=myrepo/mysvc1:v7.3.2,myrepo/mysvc2:v8,myrepo/mysvc3:v8.2.0  \
+minghsu0107/check-docker-image:v1
 ```
