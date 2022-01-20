@@ -7,11 +7,11 @@ go build -o check-image .
 ```
 Example usage:
 ```
-export REGISTRY_URL=https://harbor.mycompany.com
-export REGISTRY_USERNAME=harboruser
-export REGISTRY_PASSWORD=harborpass
-export CHECKED_IMAGES=myrepo/mysvc1:v1,myrepo/mysvc2:v1,myrepo/mysvc3:v1
-export LOGLEVEL=info
+REGISTRY_URL=https://harbor.mycompany.com \
+REGISTRY_USERNAME=harboruser \
+REGISTRY_PASSWORD=harborpass \
+CHECKED_IMAGES=myrepo/mysvc1:v1,myrepo/mysvc2:v1,myrepo/mysvc3:v1 \
+LOGLEVEL=info \
 ./check-image
 ```
 - `REGISTRY_URL`: registry URL, can be either secure or insecure registry
@@ -28,6 +28,13 @@ To obtain the result, you can refer to the following command:
 ./check-image; if [ `echo $?` = '0' ]; then touch SUCCESS; fi
 ```
 If the file `SUCCESS` is created, then the check has passed.
+
+Dockerhub example usage:
+```
+REGISTRY_URL=https://registry-1.docker.io \
+CHECKED_IMAGES=bitnami/golang:1.16.2,bitnami/golang:1.17,bitnami/golang:1.12,bitnami/golang:9999 \
+./check-image
+```
 
 You can also run the docker image directly:
 ```bash

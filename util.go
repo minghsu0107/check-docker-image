@@ -27,21 +27,15 @@ func checkImages(hub *registry.Registry, images []string) bool {
 			log.Errorf("image name parsing error: %v", err)
 			return false
 		}
-		remoteTags, err := hub.Tags(imageName)
+		exist, err := hub.Tags(imageName, imageTag)
 		if err != nil {
 			log.Errorf("listing image tags error: %v", err)
 			return false
 		}
-		match := false
-		for _, remoteTag := range remoteTags {
-			if remoteTag == imageTag {
-				log.Infof("image %s found", image)
-				match = true
-				existTagCnt++
-				break
-			}
-		}
-		if !match {
+		if exist {
+			log.Infof("image %s found", image)
+			existTagCnt++
+		} else {
 			log.Errorf("image %s not found", image)
 		}
 	}

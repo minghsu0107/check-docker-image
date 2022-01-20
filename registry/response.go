@@ -4,21 +4,30 @@ type tagsResponse struct {
 	Tags []string `json:"tags"`
 }
 
-func (registry *Registry) Tags(repository string) (tags []string, err error) {
-	url := registry.url("/v2/%s/tags/list", repository)
+func (registry *Registry) Tags(imageName, imageTag string) (bool, error) {
+	url := registry.url("/v2/%s/tags/list", imageName)
 
 	var response tagsResponse
+	var err error
 	for {
 		url, err = registry.getPaginatedJSON(url, &response)
 		switch err {
 		case ErrNoMorePages:
-			tags = append(tags, response.Tags...)
-			return tags, nil
+			for _, remoteTag := range response.Tags {
+				if remoteTag == imageTag {
+					return true, nil
+				}
+			}
+			return false, nil
 		case nil:
-			tags = append(tags, response.Tags...)
+			for _, remoteTag := range response.Tags {
+				if remoteTag == imageTag {
+					return true, nil
+				}
+			}
 			continue
 		default:
-			return nil, err
+			return false, err
 		}
 	}
 }
