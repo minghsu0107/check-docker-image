@@ -15,9 +15,11 @@ export LOGLEVEL=info
 ./check-image
 ```
 - `REGISTRY_URL`: registry URL, can be either secure or insecure registry
-  - This should be set to `https://registry-1.docker.io` if you are using Dockerhub
+  - Should be set to `https://registry-1.docker.io` if you are using Dockerhub
 - `REGISTRY_USERNAME`: username for registry authentication
+  - Can be set empty if all checked images are public
 - `REGISTRY_PASSWORD`: password for registry authentication
+  - Can be set empty if all checked images are public
 - `CHECKED_IMAGES`: comma-separated list of images to be checked
 - `LOGLEVEL`: log level, can be `debug`, `info`, `warn`, or `error` (default is `info`)
 
